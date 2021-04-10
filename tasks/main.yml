@@ -1,0 +1,15 @@
+---
+
+- name: Add Microsoft APT key
+  apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Add Microsoft APT repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-{{ ansible_distribution_release }}-prod {{ ansible_distribution_release }} main"
+    filename: "microsoft-prod"
+    update_cache: yes
+
+- name: Install powershell
+  apt:
+    name: powershell
